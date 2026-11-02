@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>architecture-designer · 架构设计技能</title>
+<meta name="description" content="给系统定分层、定模块边界、定扩展点。产出 06-architecture-design.md，交稿前跑脚本过门禁。">
+<style>
+:root{--ink:#1F1E1B;--muted:#5F5E5A;--line:#E3E1D9;--bg:#FBFAF6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:56px 24px 80px}
+h1{font-size:33px;line-height:1.3;margin:0 0 12px;letter-spacing:-.5px}
+.lead{font-size:18px;color:var(--muted);margin:0 0 24px}
+h2{font-size:20px;margin:42px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+code{font-family:Consolas,monospace;background:#F1EFE8;padding:2px 6px;border-radius:4px;font-size:14px}
+pre{background:#1F1E1B;color:#D3D1C7;padding:16px 18px;border-radius:10px;overflow-x:auto;font-family:Consolas,monospace;font-size:14px;line-height:1.7}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0 4px}
+a.btn{display:inline-block;padding:11px 20px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;border:2px solid var(--ink)}
+a.primary{background:var(--ink);color:#FBFAF6}
+a.ghost{color:var(--ink)}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}
+.flow div{border:2px solid var(--ink);border-radius:8px;padding:10px;text-align:center;font-size:14px;background:#fff}
+.flow div.on{background:#1F1E1B;color:#FBFAF6}
+.note{border-left:4px solid #0F6E56;background:#E1F5EE;padding:14px 18px;border-radius:0 8px 8px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{background:#F1EFE8;font-weight:600}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>architecture-designer</h1>
+<p class="lead">写代码之前先把骨架画对：定分层、定模块边界、定扩展点。产出 <code>06-architecture-design.md</code>，交稿前跑脚本过门禁，缺分层/模块/扩展性直接非 0 退出。</p>
+
+<div class="btns">
+  <a class="btn primary" href="https://github.com/zhanguoliang715/architecture-designer">查看源码</a>
+  <a class="btn ghost" href="https://github.com/zhanguoliang715/architecture-designer/tree/main/docs">文档</a>
+  <a class="btn ghost" href="https://github.com/zhanguoliang715/architecture-designer/blob/main/examples/06-architecture-design.example.md">示例产物</a>
+</div>
+
+<h2>它在流水线的位置</h2>
+<div class="flow">
+  <div>01 需求</div><div>02 评审</div><div>03 原型</div><div>04 UI</div><div>05 数据库</div>
+  <div class="on">06 架构（本技能）</div><div>07 开发</div><div>08 测试</div><div>09 安全</div>
+</div>
+
+<h2>它解决什么问题</h2>
+<p>架构做错的代价不是"代码丑"，是第二个功能加不进去：分层没定，业务逻辑和 SQL 混在一起，换数据库要改全部代码；模块边界没定，两个模块互读对方的表，改一处崩两处；扩展点没留，加个提醒要动五个文件；选型没写理由，半年后没人敢换。</p>
+
+<h2>30 秒上手</h2>
+<pre>git clone https://github.com/zhanguoliang715/architecture-designer.git
+cd architecture-designer
+python scripts/check_architecture.py examples/06-architecture-design.example.md</pre>
+<p>退出码 0 = 脚本正常且示例合格。然后按 <code>SKILL.md</code> 产出你自己的文档，跑同一个脚本校验。</p>
+
+<h2>六节结构</h2>
+<table>
+<tr><th>章节</th><th>写什么</th></tr>
+<tr><td>一、架构总览</td><td>一句话 + 分层图（文字化）</td></tr>
+<tr><td>二、分层架构</td><td>层 / 职责 / 依赖的下层 / 关键组件</td></tr>
+<tr><td>三、模块划分</td><td>模块 / 职责 / 对外接口 / 依赖模块</td></tr>
+<tr><td>四、技术选型</td><td>关注点 / 选型 / 理由</td></tr>
+<tr><td>五、扩展性设计</td><td>新功能怎么加 + 数据模型怎么演进</td></tr>
+<tr><td>六、约束与约定</td><td>目录结构、命名、依赖方向等硬规则</td></tr>
+</table>
+
+<h2>它不是什么</h2>
+<p class="note">不是通用架构建议。它假定你要交付的是<strong>有前后端的中小型 Web 项目</strong>；嵌入式、算法库、数据脚本用不上分层与模块这两节。它也不判断选型对错，只要求你写清理由与代价。默认形态是分层单体，不做微服务拆分。</p>
+
+<footer>MIT License · <a href="https://github.com/zhanguoliang715/architecture-designer">github.com/zhanguoliang715/architecture-designer</a></footer>
+</div>
+</body>
+</html>
