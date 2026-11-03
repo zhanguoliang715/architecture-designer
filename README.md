@@ -1,5 +1,8 @@
 # architecture-designer
 
+<p align="right">[简体中文](README.md) | [English](README.en.md)</p>
+
+
 **给系统定分层、定模块边界、定扩展点——写代码之前先把骨架画对。产出 `06-architecture-design.md`，交稿前跑脚本过门禁，缺分层/模块/扩展性直接非 0 退出。**
 
 ![Python](https://img.shields.io/badge/python-3.9%2B-3776AB)
