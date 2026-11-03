@@ -5,6 +5,7 @@
 ![Python](https://img.shields.io/badge/python-3.9%2B-3776AB)
 ![Dependencies](https://img.shields.io/badge/pip%20install-0%20个依赖-2E7D32)
 ![License](https://img.shields.io/badge/license-MIT-yellow)
+![spec](https://img.shields.io/badge/agentskills.io-spec%20valid-2E7D32)
 
 ## 它解决什么问题
 
@@ -16,6 +17,18 @@
 - 技术选型没写理由，半年后没人敢换，也没人知道当初为什么选它。
 
 这个技能把这些写成一份**有固定六节结构、能被脚本校验**的文档。不是让你"想想架构"，是把架构落到纸上、能被下游开发照着写。
+
+## 用插件安装（一条命令，已实测）
+
+```bash
+claude plugin marketplace add zhanguoliang715/architecture-designer
+claude plugin install architecture-designer@architecture-designer
+```
+
+> 本机 git 若报 `CRYPT_E_NO_REVOCATION_CHECK`（证书吊销列表查不到），命令前加 `GIT_SSL_NO_VERIFY=1`。
+> 这是本机 TLS 配置问题，与仓库无关；换台机器通常直接可用。
+
+不想装插件也行，下面的手动方式是等价的。
 
 ## 30 秒上手
 
