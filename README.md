@@ -18,17 +18,39 @@
 
 这个技能把这些写成一份**有固定六节结构、能被脚本校验**的文档。不是让你"想想架构"，是把架构落到纸上、能被下游开发照着写。
 
-## 用插件安装（一条命令，已实测）
+## 安装（三种方式，按推荐顺序）
+
+### 1. 一条命令装进所有 Agent（推荐，已实测）
+
+```bash
+npx skills add zhanguoliang715/architecture-designer
+```
+
+装好后会同时挂到 Codex、Cursor、Amp、Antigravity、Claude Code 等 20+ 个 Agent 上，不用逐个配。
+
+### 2. 作为 Claude Code 插件（已实测）
 
 ```bash
 claude plugin marketplace add zhanguoliang715/architecture-designer
 claude plugin install architecture-designer@architecture-designer
 ```
 
-> 本机 git 若报 `CRYPT_E_NO_REVOCATION_CHECK`（证书吊销列表查不到），命令前加 `GIT_SSL_NO_VERIFY=1`。
-> 这是本机 TLS 配置问题，与仓库无关；换台机器通常直接可用。
+### 3. 手动拷目录
 
-不想装插件也行，下面的手动方式是等价的。
+```bash
+git clone https://github.com/zhanguoliang715/architecture-designer.git
+```
+
+> **本机 git 报 `CRYPT_E_NO_REVOCATION_CHECK` 时**（证书吊销列表查不到），在命令前加 `GIT_SSL_NO_VERIFY=1`。
+> 这是本机 TLS 配置问题，与仓库无关，换台机器通常直接可用。
+
+## English
+
+Design the skeleton before writing code: layers, module boundaries, tech choices, extension points. Outputs 06-architecture-design.md with a script gate.
+
+```bash
+npx skills add zhanguoliang715/architecture-designer
+```
 
 ## 30 秒上手
 
