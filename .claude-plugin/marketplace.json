@@ -1,0 +1,21 @@
+{
+  "name": "architecture-designer",
+  "owner": {
+    "name": "zhanguoliang715"
+  },
+  "metadata": {
+    "description": "架构设计：定分层、模块边界与扩展点，产出 06-architecture-design.md 并跑脚本过门禁",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "architecture-designer",
+      "description": "写代码之前先把骨架画对：分层、模块边界、扩展点",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./"
+      ]
+    }
+  ]
+}
